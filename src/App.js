@@ -9,8 +9,11 @@ export default function App() {
     "Invest your new income 🤑",
   ];
 
-  //Definng the  state
+  //Definng the state for step number
   const [stepNumber, setStep] = useState(1);
+
+  //Defining state for close button
+  const [isOpen, setIsOpen] = useState(true);
 
   //Function to handle previous button
   const handlePrevious = () => {
@@ -26,24 +29,36 @@ export default function App() {
     }
   };
 
+  //Function to handle close button
+  const handleClose = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="steps">
-      <div className="numbers">
-        <div className={`${stepNumber === 1 ? "active" : ""}`}>1</div>
-        <div className={`${stepNumber === 2 ? "active" : ""}`}>2</div>
-        <div className={`${stepNumber === 3 ? "active" : ""}`}>3</div>
-      </div>
-      <div className="message">{`${stepNumber}:${
-        messages[stepNumber - 1]
-      }`}</div>
-      <div className="buttons">
-        <button className="btn" onClick={handlePrevious}>
-          Previous
-        </button>
-        <button className="btn" onClick={handleNext}>
-          Next
-        </button>
-      </div>
-    </div>
+    <>
+      <button className="close" onClick={handleClose}>
+        &times;
+      </button>
+      {isOpen && (
+        <div className="steps">
+          <div className="numbers">
+            <div className={`${stepNumber === 1 ? "active" : ""}`}>1</div>
+            <div className={`${stepNumber === 2 ? "active" : ""}`}>2</div>
+            <div className={`${stepNumber === 3 ? "active" : ""}`}>3</div>
+          </div>
+          <div className="message">{`${stepNumber}:${
+            messages[stepNumber - 1]
+          }`}</div>
+          <div className="buttons">
+            <button className="btn" onClick={handlePrevious}>
+              Previous
+            </button>
+            <button className="btn" onClick={handleNext}>
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
