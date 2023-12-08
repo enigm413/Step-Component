@@ -39,16 +39,23 @@ export default function App() {
       <button className="close" onClick={handleClose}>
         &times;
       </button>
+
+      {/* Conditional rendering of steps and messages based on isOpen state */}
       {isOpen && (
         <div className="steps">
           <div className="numbers">
+            {/* Highlights the active step based on stepNumber */}
             <div className={`${stepNumber === 1 ? "active" : ""}`}>1</div>
             <div className={`${stepNumber === 2 ? "active" : ""}`}>2</div>
             <div className={`${stepNumber === 3 ? "active" : ""}`}>3</div>
           </div>
+
+          {/* Display the current message based on stepNumber */}
           <div className="message">{`${stepNumber}:${
             messages[stepNumber - 1]
           }`}</div>
+
+          {/* Buttons to navigate between steps */}
           <div className="buttons">
             <button className="btn" onClick={handlePrevious}>
               Previous
